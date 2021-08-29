@@ -18,18 +18,26 @@ export default class App extends React.Component{
         let token = await TokenService.hasToken();
 
         if(token){
-            this.setState({
-                token
-            });
+            this.setToken(token);
         } else{
-            this.setState({
-                token: ""
-            });
+            this.removeToken();
         }
     }
 
     refreshApp = ()=>{
         this.componentDidMount();
+    }
+
+    setToken = (token)=>{
+        this.setState({
+            token
+        });
+    }
+
+    removeToken =()=>{
+        this.setState({
+            token: ""
+        });
     }
 
     render(){
