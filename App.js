@@ -13,6 +13,7 @@ export default class App extends React.Component{
             token: ""
         }
     }
+
     async componentDidMount(){
         let token = await TokenService.hasToken();
 
@@ -20,13 +21,22 @@ export default class App extends React.Component{
             this.setState({
                 token
             });
-        };
+        } else{
+            this.setState({
+                token: ""
+            });
+        }
+    }
+
+    refreshApp = ()=>{
+        this.componentDidMount();
     }
 
     render(){
         return (
             <NavigationContainer>
-                {!this.state.token ? <AuthStack/> : <PassengerStack/>}
+                
+                {!this.state.token ? <AuthStack refreshApp={this.refreshApp}/> : <PassengerStack refreshApp={this.refreshApp}/>}
             </NavigationContainer>
         );
     };

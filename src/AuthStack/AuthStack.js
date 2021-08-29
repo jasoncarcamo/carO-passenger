@@ -7,11 +7,20 @@ import LogInScreen from "./LogInScreen";
 import SignUpScreen  from "./SignUpScreen";
 
 export default class AuthStack extends React.Component{
+
+    refreshApp = ()=>{
+        this.props.refreshApp();
+    }
+
     render(){
         return (
             <Stack.Navigator>
-                <Stack.Screen name="log_in" component={LogInScreen}></Stack.Screen>
-                <Stack.Screen name="sign_off" component={SignUpScreen}></Stack.Screen>
+                <Stack.Screen name="log_in">
+                    {(props)=><LogInScreen {...props} refreshApp={this.refreshApp}/>}
+                </Stack.Screen>
+                <Stack.Screen name="sign_up">
+                    {(props)=> <SignUpScreen {...props} refreshApp={this.refreshApp}/>}
+                </Stack.Screen>
             </Stack.Navigator>
         );
     }
