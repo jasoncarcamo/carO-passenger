@@ -16,14 +16,22 @@ const PassengerStorage = {
         }
     },
     async setPassenger(newPassenger){
-        const passenger = JSON.stringify(newPassenger);
+        try{
+            const passenger = JSON.stringify(newPassenger);
 
-        return await AsyncStorage.setItem("passenger", passenger);
+            await AsyncStorage.setItem("passenger", passenger);
+
+            passenger = JSON.parse(passenger);
+
+            return passenger
+        } catch(error){
+            return error;
+        };
     },
     async updatePassenger(passenger){
         return await this.setPassenger(passenger);
     },
-    async removePassnger(){
+    async removePassenger(){
         return await AsyncStorage.removeItem("passenger");
     }
 };

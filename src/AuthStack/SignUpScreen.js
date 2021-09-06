@@ -2,6 +2,7 @@ import React from "react";
 import {View, Text, TextInput, TouchableOpacity} from "react-native";
 import PassengerAuth from "../services/PassengerAuth";
 import TokenService from "../services/TokenService";
+import PassengerStorage from "../services/PassengerStorage";
 
 export default class SignUpScreen extends React.Component{
     constructor(props){
@@ -71,13 +72,13 @@ export default class SignUpScreen extends React.Component{
 
         PassengerAuth.register(newPassenger)
             .then( passengerInfo => {
-                console.log(passengerInfo);
                 TokenService.saveToken(passengerInfo.token)
-                    .then( savedToken => {
-                        this.props.navigation.navigate("Root", {
-                            screen: "Home"
+                .then( savedToken => {
+                    PassengerStorage.setPassenger(passengerInfo.createdPassenger)
+                        .then(savedPassenger => {
+                            this.props.refreshApp();
                         });
-                    })
+                });
             })
             .catch(err => {
                 console.log(err);

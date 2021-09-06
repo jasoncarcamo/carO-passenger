@@ -1,12 +1,16 @@
 import React from "react";
 import {Text, View, TouchableOpacity} from "react-native";
 import TokenService from "../../services/TokenService";
+import PassengerStorage from "../../services/PassengerStorage";
 
 export default class LogOffScreen extends React.Component{
     removeToken = ()=>{
         TokenService.removeToken()
             .then( removedToken => {
-                this.props.refreshApp();
+                PassengerStorage.removePassenger()
+                    .then( removedPassenger => {
+                        this.props.refreshApp();
+                    });
             });
     }
 
