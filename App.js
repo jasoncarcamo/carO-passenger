@@ -6,6 +6,8 @@ import AuthStack from "./src/AuthStack/AuthStack";
 import PassengerStack from './src/PassengerStack/PassengerStack';
 import TokenService from './src/services/TokenService';"./src/services/TokenService";
 
+import LocationContext, { LocationProvider } from './src/services/contexts/LocationContext';
+
 export default class App extends React.Component{
     constructor(props){
         super(props);
@@ -43,8 +45,13 @@ export default class App extends React.Component{
     render(){
         return (
             <NavigationContainer>
-                
-                {!this.state.token ? <AuthStack refreshApp={this.refreshApp}/> : <PassengerStack refreshApp={this.refreshApp}/>}
+                <LocationContext.Consumer>
+                    {locationContext => (
+                        <LocationProvider>
+                            {<PassengerStack refreshApp={this.refreshApp}/>}
+                        </LocationProvider>
+                    )}
+                </LocationContext.Consumer>
             </NavigationContainer>
         );
     };
