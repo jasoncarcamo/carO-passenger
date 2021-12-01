@@ -1,8 +1,8 @@
 import React from "react";
 import {View, Text, TextInput, TouchableOpacity} from "react-native";
-import TokenService from "../services/TokenService";
-import PassengerAuth from "../services/PassengerAuth";
-import PassengerStorage from "../services/PassengerStorage";
+import TokenService from "../../services/TokenService";
+import PassengerAuth from "../../services/PassengerAuth";
+import PassengerStorage from "../../services/PassengerStorage";
 
 export default class LogInScreen extends React.Component{
     constructor(props){
@@ -47,7 +47,7 @@ export default class LogInScreen extends React.Component{
             });
     }
 
-    goRegister = ()=>{
+    goSignUp = ()=>{
         this.props.navigation.navigate("sign_up");
     }
 
@@ -59,7 +59,7 @@ export default class LogInScreen extends React.Component{
                 <Text>
                     Don't have an account? 
                     <TouchableOpacity
-                        onPress={this.goRegister}
+                        onPress={this.goSignUp}
                     >
                         <Text> Register</Text>
                     </TouchableOpacity>

@@ -1,8 +1,8 @@
 import React from "react";
 import {View, Text, TextInput, TouchableOpacity} from "react-native";
-import PassengerAuth from "../services/PassengerAuth";
-import TokenService from "../services/TokenService";
-import PassengerStorage from "../services/PassengerStorage";
+import PassengerAuth from "../../services/PassengerAuth";
+import TokenService from "../../services/TokenService";
+import PassengerStorage from "../../services/PassengerStorage";
 
 export default class SignUpScreen extends React.Component{
     constructor(props){

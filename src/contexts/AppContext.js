@@ -7,14 +7,6 @@ const AppContext = React.createContext({
 export default AppContext;
 
 export class AppProvider extends React.Component{
-    constructor(props){
-        super(this.props);
-        this.state = {
-
-        }
-    }
-
-
 
     render(){
         const value = {

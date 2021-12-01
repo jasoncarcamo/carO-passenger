@@ -2,13 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
-import AuthStack from "./src/AuthStack/AuthStack";
-import PassengerStack from './src/PassengerStack/PassengerStack';
 import TokenService from './src/services/TokenService';"./src/services/TokenService";
-
-import LocationContext, { LocationProvider } from './src/contexts/LocationContext';
-import AppContext, { AppProvider } from './src/contexts/AppContext';
-import PassengerContext, {PassengerProvider} from './src/contexts/PassengerContext';
+import ContextContainer from './src/contexts/ContextContainer';
+import StackHandler from './src/Stacks/StackHandler';
 
 export default class App extends React.Component{
     constructor(props){
@@ -47,22 +43,9 @@ export default class App extends React.Component{
     render(){
         return (
             <NavigationContainer>
-                <LocationProvider>
-                    <LocationContext.Consumer>
-                        { locationContext => (
-                            <PassengerProvider>
-                                <PassengerContext.Consumer>
-                                    { passengerContext => (
-                                        <AppProvider
-                                            locationContext={locationContext}
-                                            passengerContext={passengerContext}
-                                        />
-                                    )}
-                                </PassengerContext.Consumer>
-                            </PassengerProvider>
-                        )}
-                    </LocationContext.Consumer>
-                </LocationProvider>
+                <ContextContainer>
+                    <StackHandler/>
+                </ContextContainer>
             </NavigationContainer>
         );
     };
