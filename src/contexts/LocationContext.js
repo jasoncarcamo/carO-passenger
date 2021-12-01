@@ -34,8 +34,6 @@ export class LocationProvider extends React.Component{
 
         setInterval(async ()=>{
             let location = await Location.getCurrentPositionAsync({});
-        
-            console.log(location);
             
             this.setState({
                 latitude: location.coords.latitude,

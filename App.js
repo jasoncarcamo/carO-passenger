@@ -6,7 +6,9 @@ import AuthStack from "./src/AuthStack/AuthStack";
 import PassengerStack from './src/PassengerStack/PassengerStack';
 import TokenService from './src/services/TokenService';"./src/services/TokenService";
 
-import LocationContext, { LocationProvider } from './src/services/contexts/LocationContext';
+import LocationContext, { LocationProvider } from './src/contexts/LocationContext';
+import AppContext, { AppProvider } from './src/contexts/AppContext';
+import PassengerContext, {PassengerProvider} from './src/contexts/PassengerContext';
 
 export default class App extends React.Component{
     constructor(props){
@@ -45,13 +47,22 @@ export default class App extends React.Component{
     render(){
         return (
             <NavigationContainer>
-                <LocationContext.Consumer>
-                    {locationContext => (
-                        <LocationProvider>
-                            {<PassengerStack refreshApp={this.refreshApp}/>}
-                        </LocationProvider>
-                    )}
-                </LocationContext.Consumer>
+                <LocationProvider>
+                    <LocationContext.Consumer>
+                        { locationContext => (
+                            <PassengerProvider>
+                                <PassengerContext.Consumer>
+                                    { passengerContext => (
+                                        <AppProvider
+                                            locationContext={locationContext}
+                                            passengerContext={passengerContext}
+                                        />
+                                    )}
+                                </PassengerContext.Consumer>
+                            </PassengerProvider>
+                        )}
+                    </LocationContext.Consumer>
+                </LocationProvider>
             </NavigationContainer>
         );
     };
