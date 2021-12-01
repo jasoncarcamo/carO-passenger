@@ -3,6 +3,7 @@ import {View, Text, TextInput, TouchableOpacity} from "react-native";
 import TokenService from "../../services/TokenService";
 import PassengerStorage from "../../services/PassengerStorage";
 import Map from "../components/Map";
+import AddressBar from "../components/AddressBar";
 
 export default class homeScreen extends React.Component{
     handleLogOut = ()=>{
@@ -20,6 +21,8 @@ export default class homeScreen extends React.Component{
                 <Map/>
                 <Text>Home</Text>
 
+                <AddressBar/>
+                
                 <TouchableOpacity
                     onPress={this.handleLogOut}
                 >
