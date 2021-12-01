@@ -76,7 +76,6 @@ export default class SignUpScreen extends React.Component{
                 .then( savedToken => {
                     PassengerStorage.setPassenger(passengerInfo.createdPassenger)
                         .then(savedPassenger => {
-                            this.props.refreshApp();
                         });
                 });
             })

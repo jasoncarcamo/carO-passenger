@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PassengerStorage = {
-    async hasPassneger(){
+    async hasPassenger(){
         return await this.getPassenger();
     },
     async getPassenger(){

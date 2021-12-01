@@ -8,8 +8,9 @@ const Stack = createNativeStackNavigator();
 
 export default class StackHandler extends React.Component{
     render(){
+        console.log("Refreshed");
         return (
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="Authorize" component={AuthStack}></Stack.Screen>
                 <Stack.Screen name="Passenger" component={PassengerStack}></Stack.Screen>
             </Stack.Navigator>

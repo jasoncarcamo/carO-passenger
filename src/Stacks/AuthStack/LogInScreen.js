@@ -38,7 +38,7 @@ export default class LogInScreen extends React.Component{
                     .then( savedToken => {
                         PassengerStorage.setPassenger(passengerInfo.dbPassenger)
                             .then(savedPassenger => {
-                                this.props.refreshApp();
+                                this.props.navigation.navigate("Passenger");
                             });
                     });
             })

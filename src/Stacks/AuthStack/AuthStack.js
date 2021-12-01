@@ -1,15 +1,19 @@
 import React from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import LogInScreen from "./LogInScreen";
+import SignUpScreen  from "./SignUpScreen";
+import TokenService from "../../services/TokenService";
 
 const Stack = createNativeStackNavigator();
 
-import LogInScreen from "./LogInScreen";
-import SignUpScreen  from "./SignUpScreen";
-
 export default class AuthStack extends React.Component{
 
-    refreshApp = ()=>{
-        this.props.refreshApp();
+    async componentDidMount(){
+        const token = await TokenService.hasToken();
+
+        if(token){
+            this.props.navigation.navigate("Passenger");
+        };
     }
 
     render(){

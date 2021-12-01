@@ -4,12 +4,13 @@ import TokenService from "../../../services/TokenService";
 import PassengerStorage from "../../../services/PassengerStorage";
 
 export default class LogOffScreen extends React.Component{
+    
     removeToken = ()=>{
         TokenService.removeToken()
             .then( removedToken => {
                 PassengerStorage.removePassenger()
                     .then( removedPassenger => {
-                        this.props.refreshApp();
+                        this.props.navigation.navigate("Authorize");
                     });
             });
     }
