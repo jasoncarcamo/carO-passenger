@@ -6,7 +6,7 @@ const PassengerStorage = {
     },
     async getPassenger(){
         try{
-            const passenger = await AsyncStorage.getItem("passenger");
+            let passenger = await AsyncStorage.getItem("passenger");
 
             passenger = JSON.parse(passenger);
 
